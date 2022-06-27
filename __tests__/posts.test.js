@@ -12,7 +12,7 @@ describe('post routes', () => {
     pool.end;
   });
 
-  it('should add a new post ', async () => {
+  it.skip('should add a new post ', async () => {
     const post = new Post({
       post: 'hello world',
       user_id: 1,
