@@ -1,0 +1,15 @@
+const exchangeCodeForToken = async (code) => {
+  console.log(`MOCK INVOKED: exchangeCodeForToken(${code})`);
+  return `MOCK_TOKEN_FOR_CODE_${code}`;
+};
+
+const getGithubProfile = async (token) => {
+  console.log(`MOCK INVOKED: getGithubProfile(${token})`);
+  return {
+    username: 'not_real',
+    email: 'null',
+    avatar: 'www.picture.com',
+  };
+};
+
+module.exports = { exchangeCodeForToken, getGithubProfile };
