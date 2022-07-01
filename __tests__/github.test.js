@@ -26,7 +26,6 @@ describe('github routes', () => {
     const resp = await agent
       .get('/api/v1/github/callback?code=42')
       .redirects(1);
-    console.log('resp.body', resp.body);
 
     expect(resp.body).toEqual({
       id: expect.any(String),
