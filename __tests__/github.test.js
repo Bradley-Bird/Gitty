@@ -18,14 +18,15 @@ describe('github routes', () => {
     const resp = await request(app).get('/api/v1/github/login');
 
     expect(resp.header.location).toMatch(
-      'https://github.com/login/oauth/authorize?client_id=&scope=user&redirect_uri='
+      `https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&scope=user&redirect_uri=${process.env.REDIRECT_URI}`
     );
   });
 
-  it.skip('should login and redirect users to /api/v1/github/dashboard', async () => {
+  it('should login and redirect users to /api/v1/github/dashboard', async () => {
     const resp = await agent
       .get('/api/v1/github/callback?code=42')
       .redirects(1);
+    console.log('resp.body', resp.body);
 
     expect(resp.body).toEqual({
       id: expect.any(String),
