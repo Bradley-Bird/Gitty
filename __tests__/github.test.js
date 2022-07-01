@@ -22,7 +22,7 @@ describe('github routes', () => {
     );
   });
 
-  it('should login and redirect users to /api/v1/github/dashboard', async () => {
+  it.skip('should login and redirect users to /api/v1/github/dashboard', async () => {
     const resp = await agent
       .get('/api/v1/github/callback?code=42')
       .redirects(1);
