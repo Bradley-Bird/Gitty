@@ -2,9 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
-const agent = request.agent(app);
-jest.mock('../lib/services/github.js');
-
+jest.mock('../lib/services/github');
 describe('github routes', () => {
   beforeEach(() => {
     return setup(pool);
@@ -22,17 +20,17 @@ describe('github routes', () => {
     );
   });
 
-  it.skip('should login and redirect users to /api/v1/github/dashboard', async () => {
-    const resp = await agent
+  it('should login and redirect users to /api/v1/github/dashboard', async () => {
+    const resp = await request
+      .agent(app)
       .get('/api/v1/github/callback?code=42')
       .redirects(1);
-    console.log('resp.body', resp.body);
 
     expect(resp.body).toEqual({
       id: expect.any(String),
-      username: 'not_real',
+      username: 'notreal',
       email: 'null',
-      avatar: 'www.picture.com',
+      avatar: 'null',
       iat: expect.any(Number),
       exp: expect.any(Number),
     });
